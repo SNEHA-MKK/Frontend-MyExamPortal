@@ -1,0 +1,27 @@
+/* AdminProfilePage.css */
+.adminProfilePage__sidebar {
+    background-color: rgb(59, 54, 54);
+    height: 100vh;
+  }
+  
+  .adminProfilePage__profileImage {
+    height: 80px;
+    width: 80px;
+    margin-bottom: 1rem;
+  }
+  
+  .adminProfilePage__navLink {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .adminProfilePage__navLink:hover {
+    color: #adb5bd;
+  }
+  
+  .adminProfilePage__table {
+    width: 75%;
+    margin-top: 1.5rem;
+  }
+  
