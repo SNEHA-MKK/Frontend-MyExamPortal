@@ -25,6 +25,8 @@ import TopperAdmin from './pages/admin/TopperAdmin'
 import UserLevelQuizzes from './pages/users/UserLevelQuizzes'
 import { useContext } from 'react'
 import { isAdminAuthorizedContext, isUserAuthorizedContext } from './context/Context'
+import HomeQuiz from './pages/HomeQuiz'
+import AdminUsers from './pages/admin/AdminUsers'
 
 
 function App() {
@@ -37,9 +39,11 @@ const {isUserAuthorized} = useContext(isUserAuthorizedContext)
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About/>} />
+        <Route path='/homeQuiz' element={<HomeQuiz/>} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/adminProfile' element={isAdminAuthorized?<AdminProfilePage />:<Home/>} />
+        <Route path='/admin-users' element={<AdminUsers/>} />
         <Route path="/adminQuizResults" element={<ResultAdmin/>} />
         <Route path="/topperAdmin/:id" element={<TopperAdmin/>} />
 

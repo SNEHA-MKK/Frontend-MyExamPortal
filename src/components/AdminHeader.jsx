@@ -37,6 +37,7 @@ function AdminHeader() {
               <Nav.Link className='text-primary fw-bolder'><Link to={'/'} style={{ textDecoration: "none" }}>HOME</Link></Nav.Link>
               <Nav.Link className='text-primary fw-bolder'><Link to={'/about'} style={{ textDecoration: "none" }}>ABOUT</Link></Nav.Link>
               <Nav.Link className='text-primary fw-bolder'><Link to={'/adminProfile'} style={{ textDecoration: "none" }} >PROFILE</Link></Nav.Link>
+              <Nav.Link className='text-primary fw-bolder'><Link to={'/admin-users'} style={{ textDecoration: "none" }}>USERS</Link></Nav.Link>
               <Nav.Link className='text-primary fw-bolder'><Link to={'/adminCategoty'} style={{ textDecoration: "none" }}>CATEGORY</Link></Nav.Link>
               <Nav.Link className='text-primary fw-bolder'><Link to={'/adminQuizResults'} style={{ textDecoration: "none" }}>RESULTS</Link></Nav.Link>
             </Nav>

@@ -11,10 +11,10 @@ export const loginApi = async (reqbody) => {
      return await commonAPI('POST', `${serverUrl}/user/login`, reqbody, "")
 }
 
-//get user details - profile
-// export const getUserProfile = async (reqHeader) => {
-//      return await commonAPI('GET', `${serverUrl}/user-profile`, "", reqHeader)
-// }
+//get user details- profile
+export const getUsers = async (reqbody) => {
+     return await commonAPI('GET', `${serverUrl}/users-profile`,"", "")
+}
 
 //add admin profile
 export const addAdminProfileApi = async (reqbody, reqHeader) => {
@@ -42,9 +42,27 @@ export const deleteACategoryApi = async (id, reqHeader) => {
      return await commonAPI('DELETE', `${serverUrl}/delete-category/${id}`, {}, reqHeader)
 }
 
+//delete a quiz -admin
+
+export const deleteAQuizApi = async (id, reqHeader) => {
+     return await commonAPI('DELETE', `${serverUrl}/delete-quiz/${id}`, {}, reqHeader)
+}
+
+//delete a quest -admin
+
+export const deleteAQuestApi = async (id, reqHeader) => {
+     return await commonAPI('DELETE', `${serverUrl}/delete-quest/${id}`, {}, reqHeader)
+}
+
+
 //update category-admin
 export const updateCategoryApi = async (id, reqbody, reqHeader) => {
      return await commonAPI('PUT', `${serverUrl}/update-AdmCategory/${id}`, reqbody, reqHeader)
+}
+
+//update quiz-admin
+export const updateQuizApi = async (id, reqbody, reqHeader) => {
+     return await commonAPI('PUT', `${serverUrl}/update-AdmQuiz/${id}`, reqbody, reqHeader)
 }
 
 //addQuizzes - admin
@@ -69,12 +87,15 @@ export const getAllAdmQuestion = async (id, reqHeader) => {
 }
 
 //get all quizzes - user
-export const getAllUserQuiz = async (searchKey,reqHeader) => {
+export const getAllUserQuiz = async (searchKey, reqHeader) => {
 
      //query parameter = path?key = value
      return await commonAPI('GET', `${serverUrl}/user-getquiz?search=${searchKey}`, "", reqHeader)
 }
 
+export const getAllHomeQuiz = async () => {
+     return await commonAPI('GET', `${serverUrl}/home-getquiz`, "", "")
+}
 
 //get all questions - user
 export const getAllUserQuestions = async (id, reqHeader) => {
@@ -103,12 +124,18 @@ export const quizTopperApi = async (id, reqHeader) => {
 }
 
 //get user Rank and Status
-export const rankAndStatusApi = async (id,reqHeader) => {
+export const rankAndStatusApi = async (id, reqHeader) => {
      return await commonAPI('GET', `${serverUrl}/user-rank/${id}`, "", reqHeader)
 }
 
 //update profile-user
 
-export const updateProfile = async(reqbody,reqHeader)=>{
-     return await commonAPI('PUT',`${serverUrl}/update-profile`,reqbody,reqHeader)
- }
+export const updateProfile = async (reqbody, reqHeader) => {
+     return await commonAPI('PUT', `${serverUrl}/update-profile`, reqbody, reqHeader)
+}
+
+
+//add user feedback
+export const addUserFeedback = async (reqbody, reqHeader) => {
+     return await commonAPI('POST', `${serverUrl}/user-feedback`, reqbody, reqHeader)
+}

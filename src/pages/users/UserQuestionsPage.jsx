@@ -336,6 +336,7 @@ function UserQuestionsPage() {
             if (result.status === 200) {
                 setResult(result.data);
                 toast.success('Answers Submitted Successfully');
+               
                 setTimeout(() => {
                     navigate('/quizzes');
                 }, 3000);

@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, ListGroup, Container, Row, Col, Nav, Image } from "react-bootstrap";
 import AdminHeader from "../../../components/AdminHeader";
 // import { useParams } from "react-router-dom";
 import AddQuizzes from "../../../components/AddQuizzes";
 import { Link, useParams } from "react-router-dom";
-import { getAllAdmCategory, getAllAdmQuiz } from "../../../services/allAPI";
+import { deleteAQuizApi, getAllAdmCategory, getAllAdmQuiz } from "../../../services/allAPI";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPen, faTrash, faTrophy } from '@fortawesome/free-solid-svg-icons'
+import { faFilePdf, faPen, faTrash, faTrophy } from '@fortawesome/free-solid-svg-icons'
+import AdminUpdateQuiz from "./AdminUpdateQuiz";
+import { AddQuizContext, EditQuizContext } from "../../../context/Context";
+
 
 
 
@@ -16,6 +19,8 @@ const AdminQuizzesPage = () => {
 
     const [adminQuiz, setAdminQuiz] = useState([])
     const [adminCategory, setAdminCategory] = useState([])
+    const { AddQuizResponse } = useContext(AddQuizContext)
+    const { EditQuizResponse } = useContext(EditQuizContext)
 
 
     const { id } = useParams();
@@ -59,10 +64,35 @@ const AdminQuizzesPage = () => {
 
     }
 
+    const deleteAdmQuiz = async (id) => {
+
+        if (sessionStorage.getItem("token")) {
+            const token = sessionStorage.getItem("token")
+
+            const reqHeader = {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+
+            const result = await deleteAQuizApi(id, reqHeader)
+            console.log(result);
+
+            if (result.status == 200) {
+                getAllQuizzez(id)
+                // getAllCategory()
+                setAdminQuiz(result.data)
+            } else {
+                alert('Something went wrong')
+            }
+
+        }
+
+    }
+
     useEffect(() => {
         getAllQuizzez(id)
         getAllCategory()
-    }, [])
+    }, [adminQuiz, AddQuizResponse, EditQuizResponse])
 
 
     return (
@@ -87,9 +117,13 @@ const AdminQuizzesPage = () => {
                                             <p>{item.description}</p>
 
                                             <div className="row d-flex justify-content-evenly align-items-center">
+                                                
+
                                                 <Button variant="success" className="w-25 py-1"><Link to={`/adminQuizzes/:id/adminQuestions/${item._id}`} className="text-light" style={{ textDecoration: 'none' }} >Questions</Link></Button>
 
                                                 <Button className="w-25" variant="primary"><Link to={`/topperAdmin/${item._id}`} className="text-light" style={{ textDecoration: 'none' }}>Winner <FontAwesomeIcon icon={faTrophy} /></Link></Button>
+                                                
+
                                             </div>
                                         </div>
                                         <div className="col-md-3  mt-1">
@@ -105,10 +139,11 @@ const AdminQuizzesPage = () => {
                                                 </Button>
                                             </div>
 
-                                            <div className="row">
-                                                <button className="w-25 text-success border-0"><FontAwesomeIcon icon={faPen} /></button>
+                                            <div className="row ">
+                                                {/* <button className="w-25 text-success border-0"><FontAwesomeIcon icon={faPen} /></button> */}
+                                                <AdminUpdateQuiz quiz={item} />
 
-                                                <button className="w-25 ms-3 border-0"><FontAwesomeIcon icon={faTrash} className='text-danger' /></button>
+                                                <button className="w-25 border-0 p-0"><FontAwesomeIcon onClick={() => deleteAdmQuiz(item._id)} icon={faTrash} className='text-danger' /></button>
 
                                             </div>
 

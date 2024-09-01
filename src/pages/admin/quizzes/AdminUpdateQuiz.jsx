@@ -1,112 +1,197 @@
-import React, { useEffect, useState } from "react";
-import { Button, Form, Container, Row, Col ,Nav,Image} from "react-bootstrap";
-import FormContainer from "../../../components/FormContainer";
+
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useContext, useState } from 'react'
+import { Button, Form } from "react-bootstrap";
+import Modal from 'react-bootstrap/Modal';
+import FormContainer from '../../../components/FormContainer';
+import { updateQuizApi } from '../../../services/allAPI';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { EditQuizContext } from '../../../context/Context';
 
 
-const AdminUpdateQuiz = () => {
+
+function AdminUpdateQuiz({ quiz }) {
+
+    const { setEditQuizResponse } = useContext(EditQuizContext)
+
+    const [show, setShow] = useState(false);
+    const [update, setUpdate] = useState({
+        title: quiz.title,
+        description: quiz.description,
+        maxMarks: quiz.maxMarks,
+        numberOfQuestions: quiz.numberOfQuestions,
+        publish: quiz.publish,
+        category: quiz.category
+    });
+
+
+    const handleShow = () => {
+        setUpdate({
+            title: quiz.title,
+            description: quiz.description,
+            maxMarks: quiz.maxMarks,
+            numberOfQuestions: quiz.numberOfQuestions
+            // publish: quiz.publish,
+            // category: quiz.category
+        });
+        setShow(true);
+    };
+
+    const handleClose = () => {
+        setShow(false);
+        handleClose1();
+    };
+
+    const handleClose1 = () => {
+        setUpdate({
+            title: quiz.title,
+            description: quiz.description,
+            maxMarks: quiz.maxMarks,
+            numberOfQuestions: quiz.numberOfQuestions
+            // publish: quiz.publish,
+            // category: quiz.category
+        });
+    };
+
+
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+        const { title, description, maxMarks, numberOfQuestions } = update;
+        if (!title || !description || !maxMarks || !numberOfQuestions) {
+            toast.info('Please fill the form completely');
+        } else {
+            const token = sessionStorage.getItem("token");
+
+            if (token) {
+                const reqHeader = {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                };
+
+                const result = await updateQuizApi(quiz._id, update, reqHeader);
+
+                if (result.status === 200) {
+                    setShow(false);
+                    setEditQuizResponse(result.data)
+                    alert('Quiz updated successfully');
+                } else {
+                    console.log(result);
+                    alert('Something went wrong');
+                }
+            }
+        }
+    };
 
 
     return (
-        <Container fluid>
-            <Row>
-                <Col md={2} className="d-none d-md-block bg-dark text-light vh-110 d-flex flex-column align-items-center py-4">
-                    <Image
-                        src="https://cdn-icons-png.flaticon.com/512/219/219970.png"
-                        alt="Profile"
-                        height="80px"
-                        width="80px"
-                        className="mb-2"
-                        roundedCircle
-                    />
-                    <h3 className="text-light">WELCOME</h3>
-                    <h6 className="text-light">Sneha Mohandas</h6>
-                    <Nav className="flex-column w-100 mt-5">
-                        <Nav.Link href="#" className="text-light text-center mb-3">Dashboard</Nav.Link>
-                        <Nav.Link href="#" className="text-light text-center mb-3">Exams</Nav.Link>
-                        <Nav.Link href="#" className="text-light text-center">Settings</Nav.Link>
-                    </Nav>
-                </Col>
-                <Col md={10} className="mt-3">
+        <>
+            <FontAwesomeIcon onClick={handleShow} icon={faPenToSquare} className="text-info m-0 p-0 w-100 mt-4" />
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title className="text-success">Edit Quiz Details</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
                     <FormContainer>
-                        <h2>Update Quiz</h2>
-                        <Form >
-                            <Form.Group className="mb-3" controlId="title">
+                        <h2>Add Quiz</h2>
+
+                        <Form onSubmit={handleUpdate}>
+                            <Form.Group className="my-3" controlId="title">
                                 <Form.Label>Title</Form.Label>
                                 <Form.Control
                                     type="text"
                                     placeholder="Enter Quiz Title"
-                                    
+                                    name="title"
+                                    value={update.title}
+                                    onChange={(e) => setUpdate({ ...update, title: e.target.value })}
                                 />
                             </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="description">
+                            <Form.Group className="my-3" controlId="description">
                                 <Form.Label>Description</Form.Label>
                                 <Form.Control
                                     as="textarea"
-                                    rows={3}
+                                    rows="3"
                                     placeholder="Enter Quiz Description"
-                                    
+                                    name="description"
+                                    value={update.description}
+                                    onChange={(e) => setUpdate({ ...update, description: e.target.value })}
                                 />
                             </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="maxMarks">
+                            <Form.Group className="my-3" controlId="maxMarks">
                                 <Form.Label>Maximum Marks</Form.Label>
                                 <Form.Control
                                     type="number"
                                     placeholder="Enter Maximum Marks"
-                                    
+                                    name="maxMarks"
+                                    value={update.maxMarks}
+                                    onChange={(e) => setUpdate({ ...update, maxMarks: e.target.value })}
                                 />
                             </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="numberOfQuestions">
+                            <Form.Group className="my-3" controlId="numberOfQuestions">
                                 <Form.Label>Number of Questions</Form.Label>
                                 <Form.Control
                                     type="number"
                                     placeholder="Enter Number of Questions"
-                                    
+                                    name="numberOfQuestions"
+                                    value={update.numberOfQuestions}
+                                    onChange={(e) => setUpdate({ ...update, numberOfQuestions: e.target.value })}
                                 />
                             </Form.Group>
 
-                            <Form.Check
-                                className="mb-3"
+                            {/* <Form.Check
+                                className="my-3"
                                 type="switch"
                                 id="publish-switch"
                                 label="Publish Quiz"
-                               
+                                name="publish"
+                                checked={update.publish}
+
+                                onChange={(e) => setUpdate({ ...update, title: e.target.value })}
                             />
 
-                            <Form.Group className="mb-3">
-                                <Form.Label>Choose a Category</Form.Label>
+                            <div className="my-3">
+                                <label htmlFor="category-select">Choose a Category:</label>
                                 <Form.Select
                                     aria-label="Choose Category"
-                                   
+                                    id="category-select"
+                                    name="category"
+                                    value={update.category}
+                                    onChange={(e) => setUpdate({ ...update, title: e.target.value })}
                                 >
-                                    <option value="n/a">Choose Category</option>
-                                    
-                                      
-                                            <option  value={67}>
-                                                jhghj
-                                            </option>
-                                        
-                                   
-                                        <option value="">Choose one from below</option>
+                                    <option value="">Choose Category</option>
+                                    {adminCategory?.map((item) => (
+                                        <option value={item.title}>{item.title}</option>
+                                    ))
+                                    }
                                     
                                 </Form.Select>
-                            </Form.Group>
+                            </div> */}
 
-                            <Button
-                                className="mt-4"
+                            <Button onClick={(e) => handleUpdate}
+                                className="my-5"
                                 type="submit"
-                                variant="success"
+                                variant="primary"
                             >
                                 Update
                             </Button>
                         </Form>
                     </FormContainer>
-                </Col>
-            </Row>
-        </Container>
-    );
-};
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="warning" onClick={handleClose1}>
+                        Cancel
+                    </Button>
+                </Modal.Footer>
+            </Modal>
 
-export default AdminUpdateQuiz;
+            <ToastContainer theme="colored" position="top-center" autoClose={2000} />
+        </>
+    )
+}
+
+export default AdminUpdateQuiz

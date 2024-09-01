@@ -1,14 +1,17 @@
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Modal from 'react-bootstrap/Modal';
 import { Button, Form } from 'react-bootstrap';
 import FormContainer from './FormContainer';
 import { addAdmQuizApi } from '../services/allAPI';
+import { AddQuizContext } from '../context/Context';
 
 
 function AddQuizzes({ id,adminCategory }) {
+
+    const {setAddQuizResponse} = useContext(AddQuizContext)
 
     // console.log("Quiz ID:", id);
     
@@ -65,8 +68,10 @@ function AddQuizzes({ id,adminCategory }) {
                 try {
                     const result = await addAdmQuizApi(quizDetails, reqHeader, id);
                     if (result.status === 200) {
-                        toast.success('Quiz added successfully');
+                        
+                        alert('Quiz added successfully');
                         handleClose1();
+                        setAddQuizResponse(result.data)
                     } else if (result.status === 406) {
                         toast.warn('Quiz already exists');
                     } else {
