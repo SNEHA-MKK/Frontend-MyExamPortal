@@ -36,8 +36,8 @@ function Home() {
       </Navbar>
 
       <div className='p-5 text-center bg-img' style={{ minHeight: "90vh"}}>
-      <h1 style={{fontFamily:"cursive"}} className='text-center text-light text-align-justify mt-5'>Online Examination platform for all your exam <br /> conducting and assessment needs</h1>
-        <h4 className='text-light mt-4 animate__animated animate__fadeInDown'>EASY TO USE | SECURE | ACCURATE</h4>
+      <h1  className='text-center text-light text-align-justify mt-5'><b>Online Examination platform for all your exam <br /> conducting and assessment needs</b></h1>
+        <h3 style={{fontFamily:"cursive"}} className='text-light mt-4 animate__animated animate__fadeInDown'>EASY TO USE | SECURE | ACCURATE</h3>
         <Link to={'/register'}>
           <Button variant='info' className='text-light mt-3 rounded'>Get Started</Button>
         </Link>
