@@ -171,7 +171,7 @@ function UserProfilePage() {
                                 </div>
 
                                 <div className='mb-3 w-100 text-center'>
-                                    <button onClick={handleUpdate} className='btn w-25' style={{ backgroundColor: 'green', color: 'white' }}>Update</button>
+                                    <button onClick={handleUpdate} className='btn w-25' style={{ backgroundColor: 'green', color: 'white',fontFamily:'cursive' }}>Update</button>
                                 </div>
                             </div>
 
@@ -181,15 +181,15 @@ function UserProfilePage() {
                             <Table bordered className="mt-5 p-5 mx-auto w-50">
                                 <tbody>
                                     <tr>
-                                        <td><b>Name</b></td>
+                                        <td style={{fontFamily:'cursive'}} className='text-info fw-bold'>Name</td>
                                         <td>{userDetails.username}</td>
                                     </tr>
                                     <tr>
-                                        <td><b>Email</b></td>
+                                        <td style={{fontFamily:'cursive'}} className='text-info fw-bold'>Email</td>
                                         <td>{userDetails.mailId}</td>
                                     </tr>
                                     <tr>
-                                        <td><b>Phone</b></td>
+                                        <td style={{fontFamily:'cursive'}} className='text-info fw-bold'>Phone</td>
                                         <td>{userDetails.phone}</td>
                                     </tr>
                                     {/* <tr>
@@ -197,7 +197,7 @@ function UserProfilePage() {
                                     <td>Software Developer</td>
                                 </tr> */}
                                     <tr>
-                                        <td><b>Qualification</b></td>
+                                        <td style={{fontFamily:'cursive'}} className='text-info fw-bold'>Qualification</td>
                                         <td>{userDetails.qualification}</td>
                                     </tr>
                                     {/* {profile.qualification} */}

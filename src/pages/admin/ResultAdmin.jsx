@@ -37,7 +37,7 @@ function ResultAdmin() {
                 <AdminHeader />
                 <Row className='my-4' >
                     <Col md={12}>
-                        <h2 className='text-center text-info mt-3 mb-3'>Results</h2>
+                        <h2 className='text-center text-info mt-3 mb-3' style={{ fontFamily: 'cursive' }}>Results</h2>
                         <div style={{ overflowX: 'auto' }}> {/* Ensures horizontal scrolling on small screens */}
                             <Table hover bordered className="mt-4 p-4 text-center" responsive="sm"  style={{
                             borderRadius: '40px',
@@ -45,12 +45,12 @@ function ResultAdmin() {
                             boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)'}}> {/* Added responsive */}
                                 <thead>
                                     <tr>
-                                        <th className='text-info' >#</th>
-                                        <th className='text-info'>User Id</th>
-                                        <th className='text-info'>Quiz Name</th>
-                                        <th className='text-info'>Category Name</th>
-                                        <th className='text-info'>Obtained Marks</th>
-                                        <th className='text-info'>Total Marks</th>
+                                        <th className="text-info text-center" style={{ fontFamily: 'cursive' }}>No:</th>
+                                        <th className="text-info text-center" style={{ fontFamily: 'cursive' }}>User Id</th>
+                                        <th className="text-info text-center" style={{ fontFamily: 'cursive' }}>Quiz Name</th>
+                                        <th className="text-info text-center" style={{ fontFamily: 'cursive' }}>Category Name</th>
+                                        <th className="text-info text-center" style={{ fontFamily: 'cursive' }}>Obtained Marks</th>
+                                        <th className="text-info text-center" style={{ fontFamily: 'cursive' }}>Total Marks</th>
                                     </tr>
                                 </thead>
                                 <tbody>

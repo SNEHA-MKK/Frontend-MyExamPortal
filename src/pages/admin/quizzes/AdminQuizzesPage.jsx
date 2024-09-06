@@ -112,7 +112,7 @@ const AdminQuizzesPage = () => {
                 :
                 <UserHeader/>
                 }
-                <h1 className="text-center text-danger mt-4" >QUIZ</h1>
+                <h2 className="text-center text-danger mt-4" style={{fontFamily:'revert'}} >QUIZ</h2>
 
             <div className="row mb-3">
                 <div className="col-md-2"></div>
@@ -129,8 +129,8 @@ const AdminQuizzesPage = () => {
                                 <ListGroup.Item className="border-0" >
                                     <div className="row">
                                         <div className="col-md-9 ">
-                                            <h4 className="fw-bold">{item.title}</h4>
-                                            <p>{item.description}</p>
+                                            <h4>{item.title}</h4>
+                                            <p style={{fontFamily:'cursive'}}>{item.description}</p>
 
                                             <div className="row d-flex justify-content-evenly align-items-center">
                                                 

@@ -66,9 +66,9 @@ const UserQuizzesPage = () => {
                     <Card.Body>
                       <Card.Title className="mb-3">Category : <span className="text-danger">{item.category}</span></Card.Title>
                       <Card.Subtitle className="mb-4 text-muted">
-                        <h3>{item.title}</h3>
+                        <h3 style={{fontFamily:'cursive'}}>{item.title}</h3>
                       </Card.Subtitle>
-                      <Card.Text>{item.description}</Card.Text>
+                      <Card.Text style={{fontFamily:'cursive'}}>{item.description}</Card.Text>
                       <div className="d-flex flex-wrap justify-content-around">
 
                         <Link to={'/quizManual'} >

@@ -292,6 +292,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { evaluateUserAnswers, getAllUserQuestions } from '../../services/allAPI';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import UserHeader from '../../components/UserHeader';
 
 function UserQuestionsPage() {
     const { id } = useParams();
@@ -377,13 +378,15 @@ function UserQuestionsPage() {
     return (
         <>
             <Container fluid>
+                <UserHeader/>
                 { userQuestion?.length > 0?
                     <div>
-                        <Row className="justify-content-between">
-                        <Col md={4} className="my-2">
-                            <Card className="text-center p-3">
-                                <h4 className="mt-3">{formatTime(timeLeft)}</h4>
-                                Timer
+                        <Row className="justify-content-between m-4">
+                        <Col md={4} className="ms-auto shadow border-0">
+                            <Card className="text-center">
+                                <h4 className='text-danger' style={{fontFamily:'cursive'}}> Timer</h4>
+                                <h4 className="m-2">{formatTime(timeLeft)}</h4>
+                               
                             </Card>
                         </Col>
                     </Row>
@@ -393,7 +396,7 @@ function UserQuestionsPage() {
                             {userQuestion.map((item, index) => (
                                 <Row key={index} className="mb-2">
                                     <Col xs={12} className="mb-2">
-                                        <h5>{item.question}</h5>
+                                        <h5 style={{fontFamily:'cursive'}}>{item.question}</h5>
                                     </Col>
                                     <Col xs={12}>
                                         <InputGroup>

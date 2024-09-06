@@ -48,7 +48,7 @@ function Review() {
                 {review?.length > 0 ? (
                     review?.map((item) => (
                         <div className="col-lg-3 col-md-3 col-sm-6 col-12 m-1" key={item.id}>
-                            <Card className='shadow border-0 rounded' style={{ width: '90%' }}>
+                            <Card className='shadow border-0 rounded' style={{ width: '100%' }}>
                                 <div
                                     className='d-flex justify-content-center align-items-center'
                                     style={{ height: '150px' }}
@@ -56,13 +56,13 @@ function Review() {
                                     <Card.Img
                                         variant="top"
                                         src="https://img.freepik.com/premium-vector/anonymous-user-circle-icon-vector-illustration-flat-style-with-long-shadow_520826-1931.jpg"
-                                        style={{ maxHeight: '110%', maxWidth: '50%' }}
+                                        style={{ maxHeight: '100%', maxWidth: '50%' }}
                                     />
                                 </div>
                                 <Card.Body>
-                                    <Card.Title>{item.name} , {item.qualification}</Card.Title>
+                                    <Card.Title style={{fontFamily:'sans-serif'}} className='text-info'>{item.name} , {item.qualification}</Card.Title>
                                     <div className='d-flex'><h4>{item.mail}</h4><img src="https://images.template.net/99072/free-verified-tick-mark-clipart-qf03r.jpg" alt="" style={{ maxHeight: '10%', maxWidth: '10%' }} /></div>
-                                    <Card.Text>
+                                    <Card.Text className='mt-2' style={{fontFamily:'cursive'}} >
                                         {item.description}
                                     </Card.Text>
                                 </Card.Body>
@@ -70,7 +70,7 @@ function Review() {
                         </div>
                     ))
                 ) : (
-                    <h1>No Reviews</h1>
+                    <h1 className='text-center text-danger'>No Reviews</h1>
                 )}
             </div>
         </div>

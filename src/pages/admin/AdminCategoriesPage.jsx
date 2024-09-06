@@ -87,7 +87,7 @@ const AdminCategoriesPage = () => {
       <div className="row mt-1">
         <div className="col-md-2"></div>
         <div className="col-md-8">
-          <h2 className="text-center mt-5 mb-5 text-danger">Categories</h2>
+          <h2 className="text-center mt-5 mb-5 text-danger" style={{fontFamily:'revert'}} >CATEGORIES</h2>
 
 
 
@@ -102,13 +102,13 @@ const AdminCategoriesPage = () => {
 
                 >
                   <div>
-                    <h4 style={{ fontFamily: "Playfair Display" }} className="fw-bold text-primary ">{item.title}</h4>
+                    <h4 style={{fontFamily:'cursive'}} className="text-primary ">{item.title}</h4>
                     <h6 className="text-dark">{item.description}</h6>
                   </div>
                   <div className="d-flex">
 
 
-                    <Link to={`/adminQuizzes/${item._id}`} ><Button variant="success" className="m-2">More</Button></Link>
+                    <Link to={`/adminQuizzes/${item._id}`} ><Button style={{fontFamily:'cursive'}} variant="success" className="m-2">More</Button></Link>
 
                     {user ?
                       <AdminUpdateCategoryPage category={item} /

@@ -196,19 +196,19 @@ function AdminProfilePage() {
           <Table bordered className="w-75 ">
             <tbody>
               <tr>
-                <td>Name</td>
+                <td style={{fontFamily:'cursive'}} className='text-info'>Name</td>
                 <td>{adminUser.name}</td>
               </tr>
               <tr>
-                <td>Email Id</td>
+                <td style={{fontFamily:'cursive'}} className='text-info'>Email Id</td>
                 <td>{adminUser.email}</td>
               </tr>
               <tr>
-                <td>Phone</td>
+                <td style={{fontFamily:'cursive'}} className='text-info'>Phone</td>
                 <td>{adminUser.phone}</td>
               </tr>
               <tr>
-                <td>Role</td>
+                <td style={{fontFamily:'cursive'}} className='text-info'>Role</td>
                 <td>{adminUser.role}</td>
               </tr>
 

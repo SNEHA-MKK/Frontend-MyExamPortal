@@ -89,7 +89,7 @@ const AdminQuestionsPage = () => {
                                     adminQuest?.map((item, index) => (
                                         <Row className="mb-4">
                                             <Col xs={12} className="mb-2">
-                                                <h5>{index + 1}.  {item.question}</h5>
+                                                <h5 style={{fontFamily:'cursive'}}>{index + 1}.  {item.question}</h5>
                                             </Col>
                                             <Col xs={12}>
                                                 <InputGroup
