@@ -108,7 +108,7 @@ console.log(topper);
     }
   };
 
-  useEffect(() => {
+  useEffect(() => { 
 
     quizTopper(id);
 

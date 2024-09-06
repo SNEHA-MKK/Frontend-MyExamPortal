@@ -1,0 +1,72 @@
+/* Modern table styling */
+.modern-table-container {
+    width: 100%;
+    overflow-x: auto;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: auto;
+}
+
+.modern-table th,
+.modern-table td {
+    padding: 12px 15px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.modern-table thead {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.modern-table tbody tr {
+    transition: background-color 0.3s;
+}
+
+.modern-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.modern-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.modern-table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ddd;
+    letter-spacing: 0.1rem;
+}
+
+.modern-table td {
+    border-bottom: 1px solid #ddd;
+    color: #555;
+}
+
+.modern-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.modern-table-container {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .modern-table th,
+    .modern-table td {
+        padding: 8px;
+    }
+
+    .modern-table-container {
+        padding: 0.5rem;
+    }
+}

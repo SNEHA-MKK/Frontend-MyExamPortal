@@ -34,10 +34,12 @@ function UserHeader() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               <Nav.Link className='text-primary fw-bolder'><Link to={'/'} style={{ textDecoration: "none" }}>HOME</Link></Nav.Link>
-              <Nav.Link className='text-primary fw-bolder'><Link to={'/about'} style={{ textDecoration: "none" }}>ABOUT</Link></Nav.Link>
+              
               <Nav.Link className='text-primary fw-bolder'><Link to={'/profile'} style={{ textDecoration: "none" }} >PROFILE</Link></Nav.Link>
+              <Nav.Link className='text-primary fw-bolder'><Link to={'/adminCategoty'} style={{ textDecoration: "none" }}>CATEGORY</Link></Nav.Link>
               <Nav.Link className='text-primary fw-bolder'><Link to={'/quizzes'} style={{ textDecoration: "none" }}>QUIZZ</Link></Nav.Link>
               <Nav.Link className='text-primary fw-bolder'><Link to={'/quizResults'} style={{ textDecoration: "none" }}>RESULTS</Link></Nav.Link>
+              <Nav.Link className='text-primary fw-bolder'><Link to={'/review'} style={{ textDecoration: "none" }}>REVIEWS</Link></Nav.Link>
 
             </Nav>
             <Nav className='ms-auto jusify-content-between'>

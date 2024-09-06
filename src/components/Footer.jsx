@@ -9,7 +9,7 @@ function Footer() {
     return (
         <>
             <div className=' w-100 p-4' style={{ backgroundColor: 'rgba(102, 145, 180, 0.856)' }} >
-                <div className="row mx-md-5 mx-3">
+                <div className="row mx-md-5">
 
                     <div className="col-md-4">
 

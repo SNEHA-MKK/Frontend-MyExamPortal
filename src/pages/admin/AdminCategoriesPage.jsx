@@ -10,14 +10,16 @@ import { deleteACategoryApi, getAllAdmCategory } from "../../services/allAPI";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { AddCategoryResponseStatusContext, EditCategoryContext } from "../../context/Context";
+import UserHeader from "../../components/UserHeader";
 
 
 
 const AdminCategoriesPage = () => {
 
   const [adminCategory, setAdminCategory] = useState([])
-  const {AddResponse} = useContext(AddCategoryResponseStatusContext)
-  const {EditResponse} = useContext(EditCategoryContext)
+  const { AddResponse } = useContext(AddCategoryResponseStatusContext)
+  const { EditResponse } = useContext(EditCategoryContext)
+  const [user, setUser] = useState(false)
 
   const getAllCategory = async () => {
 
@@ -55,22 +57,33 @@ const AdminCategoriesPage = () => {
       } else {
         alert('Something went wrong')
       }
- 
+
     }
 
   }
 
   useEffect(() => {
     getAllCategory()
-  }, [AddResponse,EditResponse])
 
+  }, [AddResponse, EditResponse])
+
+  useEffect(() => {
+    if (sessionStorage.getItem("adminUser")) {
+      setUser(true)
+    }
+  }, [])
   // const { id } = useParams();
 
 
   return (
     <Container fluid>
 
-      <AdminHeader />
+      {user ?
+        <AdminHeader />
+        :
+        <UserHeader />
+      }
+
       <div className="row mt-1">
         <div className="col-md-2"></div>
         <div className="col-md-8">
@@ -95,12 +108,21 @@ const AdminCategoriesPage = () => {
                   <div className="d-flex">
 
 
-                    <Link to={`/adminQuizzes/${item._id}`} ><Button variant="success">More</Button></Link>
+                    <Link to={`/adminQuizzes/${item._id}`} ><Button variant="success" className="m-2">More</Button></Link>
 
-                    <AdminUpdateCategoryPage category={item} />
+                    {user ?
+                      <AdminUpdateCategoryPage category={item} /
+                      >
+                      :
+                      ""
+                    }
+                    {user ?
 
+                      <FontAwesomeIcon icon={faTrash} className='text-danger mx-3' onClick={() => deleteAdmCategory(item._id)} />
 
-                    <FontAwesomeIcon icon={faTrash} className='text-danger mx-3' onClick={() => deleteAdmCategory(item._id)} />
+                      :
+                      ""
+                    }
                   </div>
                 </ListGroup.Item>
               </ListGroup>
@@ -117,7 +139,11 @@ const AdminCategoriesPage = () => {
         </div>
         <div className="col-md-2"></div>
       </div>
+     { user?
       <AddCat />
+      :
+      ""
+      }
       <ToastContainer theme="colored" position="top-center" autoClose={2000} />
     </Container>
   );

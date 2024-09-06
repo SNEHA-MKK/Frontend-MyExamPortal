@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilePdf, faPen, faTrash, faTrophy } from '@fortawesome/free-solid-svg-icons'
 import AdminUpdateQuiz from "./AdminUpdateQuiz";
 import { AddQuizContext, EditQuizContext } from "../../../context/Context";
+import UserHeader from "../../../components/UserHeader";
 
 
 
@@ -21,6 +22,8 @@ const AdminQuizzesPage = () => {
     const [adminCategory, setAdminCategory] = useState([])
     const { AddQuizResponse } = useContext(AddQuizContext)
     const { EditQuizResponse } = useContext(EditQuizContext)
+    const [user, setUser] = useState(false)
+
 
 
     const { id } = useParams();
@@ -94,22 +97,35 @@ const AdminQuizzesPage = () => {
         getAllCategory()
     }, [adminQuiz, AddQuizResponse, EditQuizResponse])
 
+    useEffect(() => {
+        if (sessionStorage.getItem("adminUser")) {
+          setUser(true)
+        }
+      }, [])
 
     return (
         <Container fluid>
-            <AdminHeader />
+            
+
+            { user?
+                <AdminHeader />
+                :
+                <UserHeader/>
+                }
+                <h1 className="text-center text-danger mt-4" >QUIZ</h1>
+
             <div className="row mb-3">
                 <div className="col-md-2"></div>
                 <div className="col-md-8">
 
 
 
-                    <AddQuizzes adminCategory={adminCategory} id={id} />
+                    
 
                     {adminQuiz?.length > 0 ?
 
                         adminQuiz?.map((item) => (
-                            <ListGroup className="mb-5 rounded shadow " >
+                            <ListGroup className="mb-5 mt-5 rounded shadow " >
                                 <ListGroup.Item className="border-0" >
                                     <div className="row">
                                         <div className="col-md-9 ">
@@ -119,10 +135,23 @@ const AdminQuizzesPage = () => {
                                             <div className="row d-flex justify-content-evenly align-items-center">
                                                 
 
-                                                <Button variant="success" className="w-25 py-1"><Link to={`/adminQuizzes/:id/adminQuestions/${item._id}`} className="text-light" style={{ textDecoration: 'none' }} >Questions</Link></Button>
+                                                { user ?
+                                                    <Button variant="success" className="w-25 py-1"><Link to={`/adminQuizzes/:id/adminQuestions/${item._id}`} className="text-light" style={{ textDecoration: 'none' }} >Questions</Link></Button>
+                                                :
+                                                ""
+                                                }
 
-                                                <Button className="w-25" variant="primary"><Link to={`/topperAdmin/${item._id}`} className="text-light" style={{ textDecoration: 'none' }}>Winner <FontAwesomeIcon icon={faTrophy} /></Link></Button>
-                                                
+                                                {user?
+                                                    <Button className="w-25" variant="primary"><Link to={`/topperAdmin/${item._id}`} className="text-light" style={{ textDecoration: 'none' }}>Winner <FontAwesomeIcon icon={faTrophy} /></Link></Button>
+                                                :
+                                                ""
+                                                }
+                                                {user?
+                                                ""
+                                                :
+                                                <Button className="w-25" variant="primary"><Link to={`/quizzes`} className="text-light" style={{ textDecoration: 'none' }}>Quizzes </Link></Button>
+
+                                                }
 
                                             </div>
                                         </div>
@@ -141,9 +170,17 @@ const AdminQuizzesPage = () => {
 
                                             <div className="row ">
                                                 {/* <button className="w-25 text-success border-0"><FontAwesomeIcon icon={faPen} /></button> */}
-                                                <AdminUpdateQuiz quiz={item} />
+                                                {user?
+                                                    <AdminUpdateQuiz quiz={item} />
+                                                    :
+                                                    ""
+                                                }
 
+                                               { user?
                                                 <button className="w-25 border-0 p-0"><FontAwesomeIcon onClick={() => deleteAdmQuiz(item._id)} icon={faTrash} className='text-danger' /></button>
+                                            :
+                                            ""
+                                            }
 
                                             </div>
 
@@ -159,6 +196,11 @@ const AdminQuizzesPage = () => {
 
                         :
                         <h2 className="text-danger text-center mt-5 mb-4">No quizzes are present. Try adding some quizzes.</h2>}
+                        {user?
+                        <AddQuizzes adminCategory={adminCategory} id={id} />
+                        :
+                        ""
+                        }
 
 
                 </div>

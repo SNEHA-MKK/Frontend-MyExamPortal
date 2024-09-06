@@ -145,8 +145,8 @@ function Home() {
       <div className='p-5 text-center ' style={{ minHeight: "70vh", backgroundImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJVrnC-pOuzr81yoRw8JBc9WTrOC3E9x1g9g&s')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <h1 className='text-center text-light text-align-justify mt-5'>Online Examination platform for all your exam <br /> conducting and assessment needs</h1>
         <h4 className='text-light mt-4'>EASY TO USE | SECURE | ACCURATE</h4>
-        <Link to={'/about'}>
-          <Button variant='danger' className='text-light mt-5'>About Us</Button>
+        <Link to={'/register'}>
+          <Button variant='info' className='text-light mt-5 rounded'>Get Started</Button>
         </Link>
       </div>
 
@@ -169,7 +169,7 @@ function Home() {
           </Row>
           <div className='text-center'>
             <Link to={'/homeQuiz'}>
-            <Button variant='danger' className='text-light text-center mt-0 mb-4 '>Available Exams</Button>
+            <Button variant='info' className='text-light text-center mt-0 mb-4 '>Available Exams</Button>
           </Link>
           </div>
         </div>

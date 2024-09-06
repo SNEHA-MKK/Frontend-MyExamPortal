@@ -265,12 +265,12 @@ function UserLevelQuizzes() {
             <Container fluid>
                 <UserHeader />
 
-                <div style={{ backgroundImage: "url('https://e0.pxfuel.com/wallpapers/448/62/desktop-wallpaper-graduation-clipart-graduation-graduation-cap.jpg')", backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+                <div style={{ backgroundImage: "url('https://i.pinimg.com/originals/15/f6/c7/15f6c787116f624ecc9684ca9fa24b9d.gif')", backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
                     {rank.score == rank.total && <Confetti />} {/* Display confetti if the rank is 1 */}
 
                     <Row>
                         <Col>
-                            <h1 className="text-center my-5 text-danger">Rank & Status</h1>
+                            <h1 className="text-center my-5 text-danger">Result</h1>
                         </Col>
                     </Row>
                     <Row className="d-flex justify-content-center" style={{ height: '60vh' }}>

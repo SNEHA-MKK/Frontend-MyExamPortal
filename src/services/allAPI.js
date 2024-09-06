@@ -139,3 +139,8 @@ export const updateProfile = async (reqbody, reqHeader) => {
 export const addUserFeedback = async (reqbody, reqHeader) => {
      return await commonAPI('POST', `${serverUrl}/user-feedback`, reqbody, reqHeader)
 }
+
+//get all reviews - user
+export const getAllReviews = async (reqHeader) => {
+     return await commonAPI('GET', `${serverUrl}/get-reviews`, "", reqHeader)
+}

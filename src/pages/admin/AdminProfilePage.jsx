@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import AdminHeader from '../../components/AdminHeader';
+import Footer from '../../components/Footer';
 
 
 
@@ -129,7 +130,7 @@ function AdminProfilePage() {
 
 
   return (
-    <Container fluid className="p-0">
+    <Container fluid className="p-0" style={{overflowX:'hidden'}} >
 
       {/* <Navbar expand="lg" className="bg-white navbar  mb-5 " fixed="top">
         <Container className='justify-content-between align-items-center'>
@@ -158,7 +159,7 @@ function AdminProfilePage() {
       </Navbar> */}
       <AdminHeader/>
 
-      <div className="row mt-5 p-5" style={{ height: '10vh' }}>
+      <div className="row mt-5 p-5" style={{ height: '60vh' }}>
 
         <div className="col-md-1"></div>
         <div className="col-md-5 d-flex align-items-center mt-5  shadow  rounded">
@@ -217,8 +218,12 @@ function AdminProfilePage() {
 
       </div>
 
+      
+
 
       <ToastContainer theme="colored" position="top-center" autoClose={2000} />
+
+      <Footer/>
     </Container>
   );
 }

@@ -27,6 +27,7 @@ import { useContext } from 'react'
 import { isAdminAuthorizedContext, isUserAuthorizedContext } from './context/Context'
 import HomeQuiz from './pages/HomeQuiz'
 import AdminUsers from './pages/admin/AdminUsers'
+import Review from './pages/Review'
 
 
 function App() {
@@ -39,6 +40,7 @@ const {isUserAuthorized} = useContext(isUserAuthorizedContext)
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About/>} />
+        <Route path='/review' element={<Review/>} />
         <Route path='/homeQuiz' element={<HomeQuiz/>} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
